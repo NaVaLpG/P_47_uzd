@@ -19,8 +19,18 @@ with app.app_context():
 def home():
     search_text = request.args.get("searchbox")
     if search_text:
-        filtered_rows = Car.query.filter(Car.brand.ilike(f"{search_text}%"))
-        return render_template("index.html", cars=filtered_rows)
+        all_cars = Car.query.filter(Car.brand.ilike(f"{search_text}%")).all()
+        price_sum = sum(car.price for car in all_cars)
+        price_avg = round(sum(car.price for car in all_cars) / len(all_cars))
+        year_avg = round(sum(car.year for car in all_cars) / len(all_cars))
+        age_avg = round(sum(car.age for car in all_cars) / len(all_cars))
+        return render_template("index.html",
+                               cars=all_cars,
+                               price_sum=price_sum,
+                               price_avg=price_avg,
+                               year_avg=year_avg,
+                               age_avg=age_avg
+                               )
     else:
         all_cars = Car.query.all()
         price_sum = sum(car.price for car in all_cars)
@@ -33,7 +43,6 @@ def home():
                                price_avg=price_avg,
                                year_avg=year_avg,
                                age_avg=age_avg
-
                                )
 
 
@@ -106,4 +115,4 @@ def cars_api():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5001)

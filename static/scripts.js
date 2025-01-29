@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>${car.age}</td>
                     <td>${car.price}</td>
                     <td>
-                        <a href="/car/{{ car.id }}">Info</a>
-                        <a href="/car/edit/{{ car.id }}">Edit</a>
-                        <form action="/car/remove/{{ car.id }}" method="post" style="display:inline;">
+                        <a href="/car/${ car.id }">Info</a>
+                        <a href="/car/edit/${ car.id }">Edit</a>
+                        <form action="/car/remove/${ car.id }" method="post" style="display:inline;">
                             <input type="submit" value="Remove">
                         </form>
                     </td>
