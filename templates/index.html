@@ -1,54 +1,32 @@
-{% extends "base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektai</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Projektai</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Color</th>
+                <th>Year</th>
+                <th>Age</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="cars-body">
+        </tbody>
+    </table>
 
-<h4>Cars</h4>
-<form action="" method="get">
-  <p><input type="text" name="searchbox"></p>
-  <p><input type="submit" value="Filter"></p>
-</form>
+    <script src="/static/scripts.js"></script>
 
 
-<p><a href="/car/new">Insert new car</a></p>
-<table>
-  <tr>
-    <th>id</th>
-    <th>Brand</th>
-    <th>Model</th>
-    <th>Color</th>
-    <th>Year</th>
-    <th>Age</th>
-    <th>Price</th>
-    <th>Actions</th>
-  </tr>
-  {% for car in cars %}
-  <tr>
-    <td>{{ car.id }}</td>
-    <td>{{ car.brand }}</td>
-    <td>{{ car.model }}</td>
-    <td>{{ car.color }}</td>
-    <td>{{ car.year }}</td>
-    <td>{{ car.age }}</td>
-    <td>{{ car.price }}</td>
-    <td>
-        <a href="/car/{{ car.id }}">Info</a>
-        <a href="/car/edit/{{ car.id }}">Edit</a>
-      <form action="/car/remove/{{ car.id }}" method="post" style="display:inline;">
-          <input type="submit" value="Remove">
-      </form>
-    </td>
-    </tr>
-  {% endfor %}
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>AVG: {{ year_avg }}</td>
-    <td>AVG: {{ age_avg }}</td>
-    <td>Sum: {{ price_sum }} AVG: {{ price_avg }}</td>
-  </tr>
-
-</table>
-<p>{{ price_sum }}</p>
-
-{% endblock %}
+</body>
+</html>
